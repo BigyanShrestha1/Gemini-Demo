@@ -1,5 +1,5 @@
 import express from 'express';
-import { gemini_api_call } from './scripts_/gemini_api_call.js';
+import { gemini_api_call } from './gemini_api_call.js'; 
 import path from 'path';
 import { fileURLToPath } from 'url';
 
