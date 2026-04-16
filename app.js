@@ -10,10 +10,10 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.post('/gemini', async (req, res) => {
@@ -25,10 +25,10 @@ app.post('/gemini', async (req, res) => {
         }
 
         const response = await gemini_api_call(userQuery.trim());
-
         res.json({ answer: response });
     } catch (error) {
-        console.error('Error calling Gemini API:', error);
+        console.error('Error calling Gemini API:', error.message);
+        console.error(error);
         res.status(500).json({ answer: 'Error processing your request' });
     }
 });
